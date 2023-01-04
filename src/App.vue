@@ -1,30 +1,32 @@
+<script>
+export default {
+  data() {
+    return {}
+  },
+  methods: {},
+}
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <h1>My ToDo App</h1>
+  <input type="text" /><button>追加</button><button>完了済みを削除する</button>
+  <ul>
+    <li>
+      <input type="checkbox" checked /><span class="todo-done"
+        >Vueをマスターする</span
+      >
+    </li>
+    <li><input type="checkbox" /><span>牛乳を買う</span></li>
+    <li><input type="checkbox" /><span>家賃を払う</span></li>
+  </ul>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  background-color: #eee;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.todo-done {
+  text-decoration: line-through;
 }
 </style>
