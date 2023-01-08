@@ -15,17 +15,25 @@
     </li>
   </ul>
   <div>現在{{hoge}}です</div>
+  <div id="app">
+    <p>{{ value }}</p>
+    <button v-on:click="addValue(d)">減らす!!</button>
+  </div>
+  <ComputedPage />
 </template>
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
+import ComputedPage from '../components/ComputedPage.vue'
 export default {
-  components: { HelloWorld },
+  components: { HelloWorld,ComputedPage },
   data() {
     return {
       newTodoText: '',
       todos: [],
       name: 'ABC',
-      hoge:"a"
+      hoge:"a",
+      value: 100,
+      d: -2,
     }
   },
   methods: {
@@ -43,6 +51,16 @@ export default {
     clearDoneTodos() {
       this.todos = this.todos.filter((todo) => !todo.isDone)
     },
+    addValue(d) {
+      this.value += d;
+      // メソッド内でメソッドを呼び出す
+      this.adjustment();
+    },
+    adjustment() {
+      if (this.value < 0) {
+          this.value = 0;
+      }
+    }
   },
   created() {
     console.log('hoge is: ' + this.hoge)
