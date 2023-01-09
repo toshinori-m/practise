@@ -15,25 +15,23 @@
     </li>
   </ul>
   <div>現在{{hoge}}です</div>
-  <div id="app">
-    <p>{{ value }}</p>
-    <button v-on:click="addValue(d)">減らす!!</button>
-  </div>
+  <MethodsPage />
   <ComputedPage />
+  <WatchPage />
 </template>
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
+import MethodsPage from '../components/MethodsPage.vue'
 import ComputedPage from '../components/ComputedPage.vue'
+import WatchPage from '../components/WatchPage.vue'
 export default {
-  components: { HelloWorld,ComputedPage },
+  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage },
   data() {
     return {
       newTodoText: '',
       todos: [],
       name: 'ABC',
-      hoge:"a",
-      value: 100,
-      d: -2,
+      hoge:"a"
     }
   },
   methods: {
@@ -50,16 +48,6 @@ export default {
     // 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される
     clearDoneTodos() {
       this.todos = this.todos.filter((todo) => !todo.isDone)
-    },
-    addValue(d) {
-      this.value += d;
-      // メソッド内でメソッドを呼び出す
-      this.adjustment();
-    },
-    adjustment() {
-      if (this.value < 0) {
-          this.value = 0;
-      }
     }
   },
   created() {
