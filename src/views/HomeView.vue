@@ -14,7 +14,7 @@
       >
     </li>
   </ul>
-  <div>現在{{hoge}}です</div>
+  <CreatedMounted />
   <MethodsPage />
   <ComputedPage />
   <WatchPage />
@@ -26,15 +26,15 @@ import MethodsPage from '../components/MethodsPage.vue'
 import ComputedPage from '../components/ComputedPage.vue'
 import WatchPage from '../components/WatchPage.vue'
 import TextPage from '../components/TextPage.vue'
+import CreatedMounted from '../components/CreatedMounted.vue'
 
 export default {
-  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage },
+  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted },
   data() {
     return {
       newTodoText: '',
       todos: [],
-      name: 'ABC',
-      hoge:"a"
+      name: 'ABC'
     }
   },
   methods: {
@@ -52,12 +52,6 @@ export default {
     clearDoneTodos() {
       this.todos = this.todos.filter((todo) => !todo.isDone)
     }
-  },
-  created() {
-    console.log('hoge is: ' + this.hoge)
-  },
-  mounted() {
-    this.hoge = "mounted"
   }
 }
 </script>
