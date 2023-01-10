@@ -18,14 +18,17 @@
   <MethodsPage />
   <ComputedPage />
   <WatchPage />
+  <TextPage />
 </template>
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
 import MethodsPage from '../components/MethodsPage.vue'
 import ComputedPage from '../components/ComputedPage.vue'
 import WatchPage from '../components/WatchPage.vue'
+import TextPage from '../components/TextPage.vue'
+
 export default {
-  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage },
+  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage },
   data() {
     return {
       newTodoText: '',
