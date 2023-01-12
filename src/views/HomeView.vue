@@ -19,6 +19,7 @@
   <ComputedPage />
   <WatchPage />
   <TextPage />
+  <EmitPage />
 </template>
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
@@ -27,9 +28,10 @@ import ComputedPage from '../components/ComputedPage.vue'
 import WatchPage from '../components/WatchPage.vue'
 import TextPage from '../components/TextPage.vue'
 import CreatedMounted from '../components/CreatedMounted.vue'
+import EmitPage from '../components/EmitPage.vue'
 
 export default {
-  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted },
+  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
       newTodoText: '',
