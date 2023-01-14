@@ -1,32 +1,27 @@
 <template>
-  <div>
-    <text-and-text-area ref="texts" /> 
-    <!-- ref="texts"で子コンポーネントを参照できるようにref属性を付与 -->
+  <div id="app">
+    <text-and-text-area ref="texts" />
     <button @click="testAction">test</button>
   </div>
 </template>
 
 <script>
 import TextAndTextArea from './TextAndTextArea.vue'
-import { onMounted, ref } from 'vue'
-// import { ref } from 'vue'
 
 export default {
+  name: 'App',
   components: {
     TextAndTextArea
   },
-  setup () {
-    const texts = ref(null) //setup関数の中でref(null)を代入した変数を作成。また、ref="texts"としているのでconst textsとする。
-    const testAction = () => {
-      console.log(texts.value.text); //ref関数のため、アクセスするにはtexts.valueのようにvalueを使います。
-      console.log(texts.value.textArea);
-    }
-    onMounted(() => {
-      console.log(texts.value);
-    })
-    return {
-      texts,
-      testAction
+  mounted(){
+    console.log(this.$refs.texts);
+  },// このmountedは説明だけで書いているので、実際必要ない。
+  methods: {
+    testAction() {
+      console.log(this.$refs.texts.text); 
+      // テキストボックスの入力値が参照できる
+      console.log(this.$refs.texts.textArea); 
+      // テキストエリアの入力値が参照できる
     }
   }
 }

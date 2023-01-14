@@ -1,4 +1,5 @@
 <template>
+  <input type="text" v-model="message">
   <button @click="onClickButton">ボタン</button>
 </template>
 
