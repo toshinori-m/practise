@@ -1,0 +1,45 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0.30
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    platform: linux/x86_64/v8
+  back:
+    build:
+      context: ./back/
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./back:/myapp
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USER: root
+      MYSQL_ROOT_PASSWORD:
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  front:
+    build: 
+      context: ./front/
+      dockerfile: Dockerfile
+    volumes:
+      - ./front/src:/front/src
+    command: yarn run serve
+    ports:
+      - 80:8080
+    depends_on:
+      - back
+    stdin_open: true
+    tty: true
+volumes:
+  mysql-data:
