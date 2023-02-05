@@ -4,6 +4,10 @@ services:
     image: mysql:8.0.30
     restart: always
     environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USER: root
       MYSQL_ROOT_PASSWORD: password
     command: --default-authentication-plugin=mysql_native_password
     volumes:
