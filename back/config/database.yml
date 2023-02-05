@@ -15,14 +15,16 @@ default: &default
 development:
 # <<:の右側にあるものを、該当部にまとめるという意味
   <<: *default
-  database: db/development.mysql2
+  # database: db/development.mysql2
+  database: rails_app_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.mysql2
+  # database: db/test.mysql2
+  database: sampledb_test
 
 production:
   <<: *default
