@@ -1,5 +1,5 @@
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/debug-1.7.1/ext/debug
-/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230206-62172-z7zly4.rb extconf.rb
+/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230207-72091-ituuyb.rb extconf.rb
 creating Makefile
 
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/debug-1.7.1/ext/debug
@@ -14,4 +14,4 @@ ld: warning: -undefined dynamic_lookup may not work with chained fixups
 
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/debug-1.7.1/ext/debug
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 debug.bundle ./.gem.20230206-62172-1kx9bf8/debug
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20230207-72091-aphidq/debug

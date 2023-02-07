@@ -320,7 +320,7 @@ checked program was:
 "clang -o conftest -I/Users/matsumototoshinori/.rbenv/versions/2.7.6/include/ruby-2.7.0/x86_64-darwin21 -I/Users/matsumototoshinori/.rbenv/versions/2.7.6/include/ruby-2.7.0/ruby/backward -I/Users/matsumototoshinori/.rbenv/versions/2.7.6/include/ruby-2.7.0 -I. -I/Users/matsumototoshinori/.rbenv/versions/2.7.6/openssl/include -I/Users/matsumototoshinori/.rbenv/versions/2.7.6/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -g -O2 -fno-common -pipe conftest.c  -L. -L/Users/matsumototoshinori/.rbenv/versions/2.7.6/lib -L/Users/matsumototoshinori/.rbenv/versions/2.7.6/openssl/lib -L. -L/Users/matsumototoshinori/.rbenv/versions/2.7.6/lib  -fstack-protector-strong -L/usr/local/lib    -lssl -lcrypto  -lruby.2.7 -lssl -lcrypto   "
 Undefined symbols for architecture x86_64:
   "_SSL_get1_peer_certificate", referenced from:
-      _t in conftest-69471a.o
+      _t in conftest-308118.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

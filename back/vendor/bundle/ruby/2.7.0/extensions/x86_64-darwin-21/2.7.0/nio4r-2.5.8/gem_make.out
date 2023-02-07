@@ -1,5 +1,5 @@
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/nio4r-2.5.8/ext/nio4r
-/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230206-62172-16dqp5h.rb extconf.rb
+/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230207-72091-s155m7.rb extconf.rb
 checking for unistd.h... yes
 checking for linux/aio_abi.h... no
 checking for linux/io_uring.h... no
@@ -255,4 +255,4 @@ ld: warning: -undefined dynamic_lookup may not work with chained fixups
 
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/nio4r-2.5.8/ext/nio4r
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20230206-62172-lblksq
+/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20230207-72091-tw21tg
