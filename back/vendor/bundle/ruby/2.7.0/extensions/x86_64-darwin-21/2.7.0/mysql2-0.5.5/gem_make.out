@@ -1,5 +1,5 @@
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/mysql2-0.5.5/ext/mysql2
-/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230206-62172-1attk39.rb extconf.rb
+/Users/matsumototoshinori/.rbenv/versions/2.7.6/bin/ruby -I /Users/matsumototoshinori/.rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20230207-72091-1nqkwhc.rb extconf.rb
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for rb_gc_mark_movable()... yes
@@ -48,4 +48,4 @@ ld: warning: -undefined dynamic_lookup may not work with chained fixups
 
 current directory: /Users/matsumototoshinori/environment/practise/back/vendor/bundle/ruby/2.7.0/gems/mysql2-0.5.5/ext/mysql2
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20230206-62172-1ffbh80/mysql2
+/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20230207-72091-ck4t6u/mysql2
