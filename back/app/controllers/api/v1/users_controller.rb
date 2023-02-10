@@ -18,12 +18,12 @@ module Api
       end
 
       def show
-        render json: { message: '成功しました', data: @user }, status: 200
+        render json: { message: '成功しました', data: @user = User.find(params[:id]) }, status: 200
       end
 
       def create
-        users = User.new(content1: params[content1], content2: params[content2], content3: params[content3], content4: params[content4])
-        if user.save
+        users = User.new(content1: params[:content1], content2: params[:content2], content3: params[:content3], content4: params[:content4])
+        if users.save
           render json: { message: '成功しました' }, status: 200
         else
           render json: { message: '保存出来ませんでした', errors: users.errors.messages }, status: :bad_request
@@ -31,7 +31,8 @@ module Api
       end
 
       def destroy
-        if @user.destroy
+        users = User.find(params[:id])
+        if users.destroy
           render json: { message: '削除に成功しました' }, status: 200
         else
           render json: { message: '削除に失敗' }, status: 400
