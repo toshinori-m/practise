@@ -1,27 +1,36 @@
 <template>
-  <h1>My ToDo App</h1>
-  <HelloWorld :test="name"></HelloWorld>
-  <input type="text" v-model="newTodoText" />
-  <button @click="addTodo">追加</button>
-  <!-- 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される -->
-  <button @click="clearDoneTodos">完了済みを削除する</button>
-  <p v-if="todos.length === 0">ToDoがまだありません</p>
-  <ul v-else>
-    <li v-for="todo in todos" :key="todo">
-      <input type="checkbox" v-model="todo.isDone" /><span
-        :class="{ 'todo-done': todo.isDone }"
-        >{{ todo.text }}</span
-      >
-    </li>
-  </ul>
-  <CreatedMounted />
-  <MethodsPage />
-  <ComputedPage />
-  <WatchPage />
-  <TextPage />
-  <EmitPage />
+  <div>
+    <h1>My ToDo App</h1>
+    <HelloWorld :test="name"></HelloWorld>
+    <input type="text" v-model="content1" />
+    <button @click="addTodo">追加</button>
+    <!-- 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される -->
+    <button @click="clearDoneTodos">完了済みを削除する</button>
+    <p v-if="todos.length === 0">ToDoがまだありません</p>
+    <ul v-else>
+      <li v-for="todo in todos" :key="todo">
+        <input type="checkbox" v-model="todo.isDone" /><span
+          :class="{ 'todo-done': todo.isDone }"
+          >{{ todo.text }}</span
+        >
+      </li>
+    </ul>
+    <div v-for="user in users" :key="user.id">
+      <p>{{ user.content1 }}</p>
+      <p>{{ user.content2 }}</p>
+      <p>{{ user.content3 }}</p>
+      <p>{{ user.content4 }}</p>
+    </div>
+    <CreatedMounted />
+    <MethodsPage />
+    <ComputedPage />
+    <WatchPage />
+    <TextPage />
+    <EmitPage />
+  </div>
 </template>
 <script>
+import axios from 'axios'
 import HelloWorld from '../components/HelloWorld.vue'
 import MethodsPage from '../components/MethodsPage.vue'
 import ComputedPage from '../components/ComputedPage.vue'
@@ -34,26 +43,83 @@ export default {
   components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
-      newTodoText: '',
+      users:"",
+      content1: '',
       todos: [],
       name: 'ABC'
     }
   },
   methods: {
-    addTodo() {
+    async getUsers () {
+      try {
+        const res = await axios.get('http://localhost:3000/api/v1/users',{
+        })
+        if (!res) {
+          new Error('contents一覧を取得できませんでした')
+        }
+        console.log({ res })
+        this.users = res.data
+        return res
+      } catch (error) {
+        console.log({ error })
+      }
+    },
+    async addTodo () {
+      try {
+        const res = await axios.post('http://localhost:3000/api/v1/users', {
+          content1: this.content1
+          }
+        )
       // フォームに文字が未入力時に追加ボタンを押しても、アラートが表示されリストに追加されない
-      if (!this.newTodoText) return alert('文字を入力してください')
+      if (!this.content1) return alert('文字を入力してください')
       this.todos.push({
         isDone: false,
-        text: this.newTodoText,
+        text: this.content1,
       })
       // ToDoに追加したタイミングでフォームの文字列はクリアされる
-      this.newTodoText = ''
+      this.content1 = ''
+        console.log({ res })
+        return res
+      } catch (error) {
+        console.log({ error })
+      }
     },
+    clearDoneTodos (content){
+      if (this.todos.filter((todo) => !todo.isDone)){
+        this.deleteTodo(content)
+        return
+      }
+    },
+    async deleteTodo () {
+      if (!this.content1 == null) return
     // 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される
-    clearDoneTodos() {
       this.todos = this.todos.filter((todo) => !todo.isDone)
-    }
+      try {
+        const res = await axios.delete('http://localhost:3000/api/v1/users/${usersId}'
+        )
+        console.log({ res })
+        return res
+      } catch (error) {
+        console.log({ error })
+      }
+    },
+    // addTodo() {
+    //   // フォームに文字が未入力時に追加ボタンを押しても、アラートが表示されリストに追加されない
+    //   if (!this.content1) return alert('文字を入力してください')
+    //   this.todos.push({
+    //     isDone: false,
+    //     text: this.content1,
+    //   })
+    //   // ToDoに追加したタイミングでフォームの文字列はクリアされる
+    //   this.content1 = ''
+    // },
+    // // 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される
+    // clearDoneTodos() {
+    //   this.todos = this.todos.filter((todo) => !todo.isDone)
+    // }
+  },
+  mouted() {
+    this.getUsers()
   }
 }
 </script>
