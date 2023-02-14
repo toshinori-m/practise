@@ -24,7 +24,7 @@ module Api
       def create
         users = User.new(content1: params[:content1], content2: params[:content2], content3: params[:content3], content4: params[:content4])
         if users.save
-          render json: { message: '成功しました' }, status: 200
+          render json: { message: '成功しました', data: users }, status: 200
         else
           render json: { message: '保存出来ませんでした', errors: users.errors.messages }, status: :bad_request
         end
