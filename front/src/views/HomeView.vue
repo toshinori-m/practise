@@ -15,6 +15,13 @@
         >
       </li>
     </ul>
+    <div v-for="add_user in add_users" :key="add_user.id">
+      <p>id = {{ add_user.id }}</p>
+      <p>content1 = {{ add_user.content1 }}</p>
+      <p>content2 = {{ add_user.content2 }}</p>
+      <p>content3 = {{ add_user.content3 }}</p>
+      <p>content4 = {{ add_user.content4 }}</p>
+    </div>
     <div v-for="user in users" :key="user.id">
       <p>id = {{ user.id }}</p>
       <p>content1 = {{ user.content1 }}</p>
@@ -44,7 +51,8 @@ export default {
   components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
-      users:'',
+      add_users:'',
+      users:[],
       content1: '',
       todos: [],
       name: 'ABC'
@@ -82,7 +90,7 @@ export default {
       //   return res
       // })
       console.log(res.data)
-        this.users = res.data
+        this.add_users = res.data
       return res
         // .then(response => (this.users = response.data))
       } catch (error) {

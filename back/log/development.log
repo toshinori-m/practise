@@ -31045,3 +31045,173 @@ Processing by Api::V1::UsersController#index as */*
 Completed 200 OK in 53ms (Views: 12.3ms | ActiveRecord: 14.1ms | Allocations: 2073)
 
 
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:08:25 +0900
+  [1m[36mActiveRecord::SchemaMigration Pluck (36.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 52ms (Views: 0.7ms | ActiveRecord: 30.1ms | Allocations: 9627)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:11:05 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (10.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 38ms (Views: 10.4ms | ActiveRecord: 10.1ms | Allocations: 1804)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:12:10 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (13.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 37ms (Views: 1.4ms | ActiveRecord: 13.5ms | Allocations: 1710)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:12:34 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"ss", "user"=>{"content1"=>"ss"}}
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (22.7ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('ss', NULL, NULL, NULL, '2023-02-14 01:12:34.271406', '2023-02-14 01:12:34.271406')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (8.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 63ms (Views: 0.8ms | ActiveRecord: 41.4ms | Allocations: 2604)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:13:42 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (14.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 49ms (Views: 17.1ms | ActiveRecord: 14.8ms | Allocations: 1781)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:13:58 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"sw", "user"=>{"content1"=>"sw"}}
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (4.2ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('sw', NULL, NULL, NULL, '2023-02-14 01:13:58.297234', '2023-02-14 01:13:58.297234')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 30ms (Views: 0.5ms | ActiveRecord: 10.7ms | Allocations: 1968)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:24:03 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (10.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 95ms (Views: 2.0ms | ActiveRecord: 18.6ms | Allocations: 1990)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:24:09 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"cc", "user"=>{"content1"=>"cc"}}
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (5.8ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('cc', NULL, NULL, NULL, '2023-02-14 01:24:10.013063', '2023-02-14 01:24:10.013063')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 36ms (Views: 0.9ms | ActiveRecord: 11.0ms | Allocations: 1969)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:24:39 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"vc", "user"=>{"content1"=>"vc"}}
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (6.9ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('vc', NULL, NULL, NULL, '2023-02-14 01:24:39.543925', '2023-02-14 01:24:39.543925')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (10.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 35ms (Views: 1.0ms | ActiveRecord: 18.9ms | Allocations: 1965)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:26:55 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (11.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 38ms (Views: 2.2ms | ActiveRecord: 11.7ms | Allocations: 1984)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:27:00 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"ew", "user"=>{"content1"=>"ew"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('ew', NULL, NULL, NULL, '2023-02-14 01:27:00.897007', '2023-02-14 01:27:00.897007')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 20ms (Views: 0.4ms | ActiveRecord: 8.4ms | Allocations: 1962)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:27:07 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"dd", "user"=>{"content1"=>"dd"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('dd', NULL, NULL, NULL, '2023-02-14 01:27:07.143361', '2023-02-14 01:27:07.143361')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 40ms (Views: 26.4ms | ActiveRecord: 5.7ms | Allocations: 1968)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:27:26 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (10.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 52ms (Views: 3.2ms | ActiveRecord: 10.8ms | Allocations: 2127)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:27:36 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"sd", "user"=>{"content1"=>"sd"}}
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('sd', NULL, NULL, NULL, '2023-02-14 01:27:36.225368', '2023-02-14 01:27:36.225368')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 34ms (Views: 0.4ms | ActiveRecord: 8.0ms | Allocations: 1962)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:27:48 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"df", "user"=>{"content1"=>"df"}}
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (4.2ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('df', NULL, NULL, NULL, '2023-02-14 01:27:48.066981', '2023-02-14 01:27:48.066981')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 37ms (Views: 3.9ms | ActiveRecord: 10.0ms | Allocations: 1969)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-14 10:28:14 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content1"=>"ee", "user"=>{"content1"=>"ee"}}
+  [1m[36mTRANSACTION (9.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (10.9ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES ('ee', NULL, NULL, NULL, '2023-02-14 01:28:14.833411', '2023-02-14 01:28:14.833411')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 43ms (Views: 0.7ms | ActiveRecord: 25.2ms | Allocations: 1962)
+
+
+Started DELETE "/api/v1/users/$%7BusersId%7D" for 172.20.0.1 at 2023-02-14 10:32:04 +0900
+Processing by Api::V1::UsersController#destroy as HTML
+  Parameters: {"id"=>"${usersId}"}
+  [1m[36mUser Load (16.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/api/v1/users_controller.rb:34:in `destroy'
+Completed 404 Not Found in 61ms (ActiveRecord: 16.3ms | Allocations: 5132)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=${usersId}):
+  
+app/controllers/api/v1/users_controller.rb:34:in `destroy'
