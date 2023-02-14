@@ -16,10 +16,11 @@
       </li>
     </ul>
     <div v-for="user in users" :key="user.id">
-      <p>{{ user.content1 }}</p>
-      <p>{{ user.content2 }}</p>
-      <p>{{ user.content3 }}</p>
-      <p>{{ user.content4 }}</p>
+      <p>id = {{ user.id }}</p>
+      <p>content1 = {{ user.content1 }}</p>
+      <p>content2 = {{ user.content2 }}</p>
+      <p>content3 = {{ user.content3 }}</p>
+      <p>content4 = {{ user.content4 }}</p>
     </div>
     <CreatedMounted />
     <MethodsPage />
@@ -43,7 +44,7 @@ export default {
   components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
-      users:"",
+      users:'',
       content1: '',
       todos: [],
       name: 'ABC'
@@ -52,14 +53,12 @@ export default {
   methods: {
     async getUsers () {
       try {
-        const res = await axios.get('http://localhost:3000/api/v1/users',{
-        })
+        const res = await axios.get('http://localhost:3000/api/v1/users')
         if (!res) {
           new Error('contents一覧を取得できませんでした')
         }
         console.log({ res })
         this.users = res.data
-        return res
       } catch (error) {
         console.log({ error })
       }
@@ -78,8 +77,14 @@ export default {
       })
       // ToDoに追加したタイミングでフォームの文字列はクリアされる
       this.content1 = ''
-        console.log({ res })
-        return res
+      // .then(res => {
+      //   console.log({ res })
+      //   return res
+      // })
+      console.log(res.data)
+        this.users = res.data
+      return res
+        // .then(response => (this.users = response.data))
       } catch (error) {
         console.log({ error })
       }
@@ -118,7 +123,7 @@ export default {
     //   this.todos = this.todos.filter((todo) => !todo.isDone)
     // }
   },
-  mouted() {
+  mounted() {
     this.getUsers()
   }
 }
