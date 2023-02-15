@@ -14,15 +14,6 @@
         >
       </li>
     </ul>
-    <ul>
-      <li v-for="add_user in add_users" :key="add_user">
-        <p>id = {{ add_user.id }}</p>
-        <p>content1 = {{ add_user.content1 }}</p>
-        <p>content2 = {{ add_user.content2 }}</p>
-        <p>content3 = {{ add_user.content3 }}</p>
-        <p>content4 = {{ add_user.content4 }}</p>
-      </li>
-    </ul>
     <div v-for="user in users" :key="user.id">
       <p>id = {{ user.id }}</p>
       <p>content1 = {{ user.content1 }}</p>
@@ -52,7 +43,6 @@ export default {
   components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
-      add_users:[],
       users:[],
       content1: '',
       todos: [],
@@ -77,10 +67,11 @@ export default {
         content1: this.content1
       })
       .then (res => {
-        axios.get('http://localhost:3000/api/v1/users')
-        console.log({ res })
-        this.add_users = res.data})
-      .catch (error => console.log({ error }))
+        this.getUsers()
+        this.users = res.data}
+      )
+      .catch (error => console.log({ error })
+      )
       
       if (!this.content1) return alert('文字を入力してください')
       this.todos.push({
