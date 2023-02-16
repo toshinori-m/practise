@@ -1,26 +1,23 @@
 <template>
   <div>
-    <h1>My ToDo App</h1>
+    <h1>My user App</h1>
     <HelloWorld :test="name"></HelloWorld>
     <input type="text" v-model="content1" />
     <button @click="addUsers">追加</button>
-    <button @click="clearDoneUsers">完了済みを削除する</button>
-    <p v-if="todos.length === 0">ToDoがまだありません</p>
+    <button @click="clearDoneUsers()">完了済みを削除する</button>
+    <p v-if="users.length === 0">userがまだありません</p>
     <ul v-else>
-      <li v-for="todo in todos" :key="todo">
-        <input type="checkbox" v-model="todo.isDone" /><span
-          :class="{ 'todo-done': todo.isDone }"
-          >{{ todo.text }}</span
+      <li v-for="user in users" :key="user">
+        <input type="checkbox" v-model="user.isDone" />
+          <span :class="{ 'user-done': user.isDone }"
+          >id = {{ user.id }}</span
         >
+        <p>content1 = {{ user.content1 }}</p>
+        <p>content2 = {{ user.content2 }}</p>
+        <p>content3 = {{ user.content3 }}</p>
+        <p>content4 = {{ user.content4 }}</p>
       </li>
     </ul>
-    <div v-for="user in users" :key="user.id">
-      <p>id = {{ user.id }}</p>
-      <p>content1 = {{ user.content1 }}</p>
-      <p>content2 = {{ user.content2 }}</p>
-      <p>content3 = {{ user.content3 }}</p>
-      <p>content4 = {{ user.content4 }}</p>
-    </div>
     <CreatedMounted />
     <MethodsPage />
     <ComputedPage />
@@ -43,9 +40,8 @@ export default {
   components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
   data() {
     return {
-      users:[],
+      users: [],
       content1: '',
-      todos: [],
       name: 'ABC'
     }
   },
@@ -72,33 +68,34 @@ export default {
       )
       .catch (error => console.log({ error })
       )
-      
       if (!this.content1) return alert('文字を入力してください')
-      this.todos.push({
+      this.users.push({
         isDone: false,
         text: this.content1,
       })
       this.content1 = ''
     },
-    clearDoneUsers (content){
-      if (this.todos.filter((todo) => !todo.isDone)){
-        this.deleteTodo(content)
+    clearDoneUsers (){
+      if (!this.content1 == null) return
+      // this.users = this.users.filter((user) => !user.isDone)
+      const user = this.users.filter((user) => user.isDone)
+        console.log(user)
+      if (user.id === this.users.id){
+        console.log(user.id)
+        this.deleteUsers(user)
         return
       }
     },
-    // async deleteTodo () {
-    //   if (!this.content1 == null) return
-    // // 完了済みを削除するボタンを押すとチェックボックスがオンになっているToDoが削除される
-    //   this.todos = this.todos.filter((todo) => !todo.isDone)
-    //   try {
-    //     const res = await axios.delete('http://localhost:3000/api/v1/users/${usersId}'
-    //     )
-    //     console.log({ res })
-    //     return res
-    //   } catch (error) {
-    //     console.log({ error })
-    //   }
-    // },
+    deleteUsers () {
+      axios.delete('http://localhost:3000/api/v1/users/${userId}'
+        )
+      .then (res => {
+        this.getUsers()
+        this.users = res.data}
+      )
+      .catch (error => console.log({ error })
+      )
+    },
   },
   mounted() {
     this.getUsers()
@@ -111,7 +108,7 @@ body {
   background-color: #eee;
 }
 
-.todo-done {
+.user-done {
   text-decoration: line-through;
 }
 </style>
