@@ -79,15 +79,16 @@ export default {
       if (!this.content1 == null) return
       // this.users = this.users.filter((user) => !user.isDone)
       const user = this.users.filter((user) => user.isDone)
-        console.log(user)
-      if (user.id === this.users.id){
-        console.log(user.id)
-        this.deleteUsers(user)
-        return
+      for (let i = 0; i < user.length; i++) {
+        const userIsDone = user[i]
+        console.log(userIsDone.id)
+        if (user.id === this.users.id){
+          this.deleteUsers(userIsDone.id)
+        }
       }
     },
-    deleteUsers () {
-      axios.delete('http://localhost:3000/api/v1/users/${userId}'
+    deleteUsers (userIsDoneId) {
+      axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId
         )
       .then (res => {
         this.getUsers()
