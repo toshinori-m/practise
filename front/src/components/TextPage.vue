@@ -14,9 +14,6 @@ export default {
   components: {
     TextAndTextArea
   },
-  mounted(){
-    console.log(this.$refs.texts);
-  },// このmountedは説明だけで書いているので、実際必要ない。
   methods: {
     async testAction () {
       try {

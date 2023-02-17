@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1>My user App</h1>
-    <HelloWorld :test="name"></HelloWorld>
     <input type="text" v-model="content1" />
     <button @click="addUsers">追加</button>
     <button @click="clearDoneUsers()">完了済みを削除する</button>
+    <TextPage />
+    <EmitPage />
     <p v-if="users.length === 0">userがまだありません</p>
     <ul v-else>
       <li v-for="user in users" :key="user">
@@ -18,45 +19,30 @@
         <p>content4 = {{ user.content4 }}</p>
       </li>
     </ul>
-    <CreatedMounted />
-    <MethodsPage />
-    <ComputedPage />
-    <WatchPage />
-    <TextPage />
-    <EmitPage />
   </div>
 </template>
 <script>
 import axios from 'axios'
-import HelloWorld from '../components/HelloWorld.vue'
-import MethodsPage from '../components/MethodsPage.vue'
-import ComputedPage from '../components/ComputedPage.vue'
-import WatchPage from '../components/WatchPage.vue'
 import TextPage from '../components/TextPage.vue'
-import CreatedMounted from '../components/CreatedMounted.vue'
 import EmitPage from '../components/EmitPage.vue'
 
 export default {
-  components: { HelloWorld,MethodsPage,ComputedPage,WatchPage,TextPage,CreatedMounted,EmitPage },
+  components: { TextPage,EmitPage },
   data() {
     return {
       users: [],
-      content1: '',
-      name: 'ABC'
+      content1: ''
     }
   },
   methods: {
-    async getUsers () {
-      try {
-        const res = await axios.get('http://localhost:3000/api/v1/users')
-        if (!res) {
-          new Error('contents一覧を取得できませんでした')
-        }
+    getUsers () {
+      axios.get('http://localhost:3000/api/v1/users')
+      .then (res => {
         console.log({ res })
-        this.users = res.data
-      } catch (error) {
-        console.log({ error })
-      }
+        this.users = res.data}
+      )
+      .catch (error => console.log({ error })
+      )
     },
     addUsers () {
       axios.post('http://localhost:3000/api/v1/users', {
@@ -79,6 +65,7 @@ export default {
       if (!this.content1 == null) return
       // this.users = this.users.filter((user) => !user.isDone)
       const user = this.users.filter((user) => user.isDone)
+      // 配列でデータが格納されているので、要素番号を指定
       for (let i = 0; i < user.length; i++) {
         const userIsDone = user[i]
         console.log(userIsDone.id)
@@ -89,14 +76,14 @@ export default {
     },
     deleteUsers (userIsDoneId) {
       axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId
-        )
+      )
       .then (res => {
         this.getUsers()
         this.users = res.data}
       )
       .catch (error => console.log({ error })
       )
-    },
+    }
   },
   mounted() {
     this.getUsers()
