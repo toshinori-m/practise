@@ -1,6 +1,8 @@
 <template>
-  <p>{{ value }}</p>
-  <button v-on:click="addValue(d)">減らす!!</button>
+  <div>
+    <p>{{ value }}</p>
+    <button v-on:click="addValue(d)">減らす!!</button>
+  </div>
 </template>
 
 <script>
