@@ -48,10 +48,9 @@ export default {
       axios.post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       })
-      .then (res => {
+      .then (() => {
         this.getUsers()
-        this.users = res.data}
-      )
+      })
       .catch (error => console.log({ error })
       )
       if (!this.content1) return alert('文字を入力してください')
@@ -77,10 +76,9 @@ export default {
     deleteUsers (userIsDoneId) {
       axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId
       )
-      .then (res => {
+      .then (() => {
         this.getUsers()
-        this.users = res.data}
-      )
+      })
       .catch (error => console.log({ error })
       )
     }

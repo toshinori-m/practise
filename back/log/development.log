@@ -35768,3 +35768,61 @@ Processing by Api::V1::UsersController#index as HTML
 Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 1209)
 
 
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:23:11 +0900
+  [1m[36mActiveRecord::SchemaMigration Pluck (28.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (6.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 54ms (Views: 0.7ms | ActiveRecord: 34.8ms | Allocations: 9432)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:23:20 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content2"=>"de", "content3"=>"dd", "user"=>{"content2"=>"de", "content3"=>"dd"}}
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (17.3ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES (NULL, 'de', 'dd', NULL, '2023-02-17 07:23:20.936651', '2023-02-17 07:23:20.936651')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (14.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 60ms (Views: 0.7ms | ActiveRecord: 36.2ms | Allocations: 2666)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:24:17 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (16.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 49ms (Views: 1.5ms | ActiveRecord: 16.4ms | Allocations: 1631)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:24:26 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content2"=>"ee", "content3"=>"rr", "user"=>{"content2"=>"ee", "content3"=>"rr"}}
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (10.7ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES (NULL, 'ee', 'rr', NULL, '2023-02-17 07:24:26.711562', '2023-02-17 07:24:26.711562')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 60ms (Views: 1.2ms | ActiveRecord: 18.1ms | Allocations: 1984)
+
+
+Started POST "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:25:11 +0900
+Processing by Api::V1::UsersController#create as HTML
+  Parameters: {"content4"=>"aa", "user"=>{"content4"=>"aa"}}
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mUser Create (5.9ms)[0m  [1m[32mINSERT INTO `users` (`content1`, `content2`, `content3`, `content4`, `created_at`, `updated_at`) VALUES (NULL, NULL, NULL, 'aa', '2023-02-17 07:25:11.041367', '2023-02-17 07:25:11.041367')[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `create'
+Completed 200 OK in 55ms (Views: 1.0ms | ActiveRecord: 22.1ms | Allocations: 1978)
+
+
+Started GET "/api/v1/users" for 172.20.0.1 at 2023-02-17 16:25:15 +0900
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` ORDER BY `users`.`created_at` DESC[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7:in `map'
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 2.1ms | Allocations: 1730)
+
+
