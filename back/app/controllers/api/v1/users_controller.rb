@@ -2,8 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
       def index
-        users_array = muster
-        return render json: users_array, status: 200
+        muster
+        return render json: muster, status: 200
       end
 
       def show
@@ -11,20 +11,19 @@ module Api
       end
 
       def create
-        users = add_user
-        return render json: { message: '成功しました', data: users }, status: 200 if users.save
-        return render json: { message: '保存出来ませんでした', errors: users.errors.messages }, status: :bad_request
+        array_add = new_early
+        return render json: { message: '成功しました', data: array_add }, status: 200 if array_add.save
+        return render json: { message: '保存出来ませんでした', errors: array_add.errors.messages }, status: :bad_request
       end
 
       def destroy
-        users = delete_specified
-        return render json: { message: '削除に成功しました' }, status: 200 if users.destroy
+        array = array_find
+        return render json: { message: '削除に成功しました' }, status: 200 if array.destroy
         return render json: { message: '削除に失敗' }, status: 400
       end
 
       private
       def muster
-        User.all
         users = sort_users
         users_array(users)
       end
@@ -35,21 +34,33 @@ module Api
 
       def users_array(users)
         users.map do |user|
-          { id: user.id,
-            content1: user.content1,
-            content2: user.content2,
-            content3: user.content3,
-            content4: user.content4,
-            created_at: user.created_at
-          }
+          repeat(user)
         end
       end
 
-      def add_user
-        User.new(content1: params[:content1], content2: params[:content2], content3: params[:content3], content4: params[:content4])
+      def repeat(user)
+        { id: user.id,
+          content1: user.content1,
+          content2: user.content2,
+          content3: user.content3,
+          content4: user.content4,
+          created_at: user.created_at
+        }
       end
 
-      def delete_specified
+      def new_early
+        User.new (information)
+      end
+
+      def information
+        { content1: params[:content1],
+          content2: params[:content2],
+          content3: params[:content3],
+          content4: params[:content4]
+        }
+      end
+
+      def array_find
         User.find(params[:id])
       end
     end
