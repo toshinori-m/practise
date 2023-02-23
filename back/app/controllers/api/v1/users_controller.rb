@@ -2,8 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
       def index
-        muster
-        return render json: muster, status: 200
+        users_array = muster
+        return render json: users_array, status: 200
       end
 
       def show
@@ -11,15 +11,15 @@ module Api
       end
 
       def create
-        array_add = new_early
-        return render json: { message: '成功しました', data: array_add }, status: 200 if array_add.save
-        return render json: { message: '保存出来ませんでした', errors: array_add.errors.messages }, status: :bad_request
+        new_user
+        return render json: { message: '成功しました', data: new_user }, status: 200 if new_user.save
+        render json: { message: '保存出来ませんでした', errors: new_user.errors.messages }, status: :bad_request
       end
 
       def destroy
-        array = array_find
+        array = find_user
         return render json: { message: '削除に成功しました' }, status: 200 if array.destroy
-        return render json: { message: '削除に失敗' }, status: 400
+        render json: { message: '削除に失敗' }, status: 400
       end
 
       private
@@ -34,11 +34,11 @@ module Api
 
       def users_array(users)
         users.map do |user|
-          repeat(user)
+          user_hash(user)
         end
       end
 
-      def repeat(user)
+      def user_hash(user)
         { id: user.id,
           content1: user.content1,
           content2: user.content2,
@@ -48,11 +48,11 @@ module Api
         }
       end
 
-      def new_early
-        User.new (information)
+      def new_user
+        User.new (create_params)
       end
 
-      def information
+      def create_params
         { content1: params[:content1],
           content2: params[:content2],
           content3: params[:content3],
@@ -60,7 +60,7 @@ module Api
         }
       end
 
-      def array_find
+      def find_user
         User.find(params[:id])
       end
     end
