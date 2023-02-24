@@ -6,7 +6,7 @@ module Api
       end
 
       def show
-        render json: { message: '成功しました', data: @user = User.find(params[:id]) }, status: 200
+        render json: { message: '成功しました', data: find_user }, status: 200
       end
 
       def create
@@ -24,8 +24,7 @@ module Api
       private
       
       def users_array
-        users = User.order(created_at: :desc)
-        users.map do |user|
+        User.order(created_at: :desc).map do |user|
           user_hash(user)
         end
       end
