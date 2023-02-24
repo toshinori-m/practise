@@ -6,7 +6,7 @@ module Api
       end
 
       def show
-        return render json: { message: '成功しました', data: @user = User.find(params[:id]) }, status: 200
+        render json: { message: '成功しました', data: @user = User.find(params[:id]) }, status: 200
       end
 
       def create
@@ -22,6 +22,7 @@ module Api
       end
 
       private
+      
       def users_array
         users = User.order(created_at: :desc)
         users.map do |user|
@@ -41,7 +42,7 @@ module Api
       end
 
       def new_user
-        User.new (create_params)
+        User.new(create_params)
       end
 
       def create_params
