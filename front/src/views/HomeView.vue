@@ -6,7 +6,7 @@
     <button @click = "clearDoneUsers">完了済みを削除する</button>
     <TextPage />
     <EmitPage />
-    <p v-if="users.length === 0">userがまだありません</p>
+    <p v-if = "users.length === 0">userがまだありません</p>
     <ul v-else>
       <li v-for = "user in users" :key = "user">
         <input type = "checkbox" v-model = "user.isDone"/>
@@ -35,56 +35,60 @@ export default{
     }
   },
   methods:{
-    getUsers(){
+    getUsers() {
       axios.get('http://localhost:3000/api/v1/users')
       .then(res => {
         console.log({ res })
         this.users = res.data}
       )
-      .catch(this.catch_error)
+      .catch (error => console.log({ error })
+      )
     },
-    addUsers(){
+    addUsers() {
       axios.post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       })
-      .then(this.then_get_user)
-      .catch(this.catch_error)
-      this.alert_window()
+      .then (() => {
+        this.getUsers()
+      })
+      .catch (error => console.log({ error })
+      )
+      this.alert()
     },
-    alert_window(){
-      if(!this.content1)
-      return alert('文字を入力してください')
+    alert() {
+      if(!this.content1) return alert('文字を入力してください')
       this.users.push({
         isDone: false,
         text: this.content1,
       })
       this.content1 = ''
     },
-    clearDoneUsers(){
-      if (!this.content1 === null) return
+    clearDoneUsers() {
+      if (this.content1.length !== 0) return
+      this.done_filter()
+    },
+    done_filter() {
       const user = this.users.filter((user) => user.isDone)
-      for (let i = 0; i < user.length; i++) {
+      this.is_done(user)
+    },
+    is_done(user) {
+      for(let i = 0; i < user.length; i++) {
         const userIsDone = user[i]
-        console.log(userIsDone.id)
-        if(user.id === this.users.id){
+        if(user.id === this.users.id) {
           this.deleteUsers(userIsDone.id)
         }
       }
     },
-    deleteUsers(userIsDoneId){
-      axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId
+    deleteUsers(userIsDoneId) {
+      axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId)
+      .then (() => {
+        this.getUsers()
+      })
+      .catch (error => console.log({ error })
       )
-      .then(this.then_get_user)
-      .catch(this.catch_error)
-    },
-    then_get_user(){
-      () => {this.getUsers}
-    },
-    catch_error(){
-      error => console.log({ error })
     }
   },
-  mounted(){
+  mounted() {
     this.getUsers()
   }
 }
