@@ -37,55 +37,33 @@ export default{
   methods:{
     getUsers() {
       axios.get('http://localhost:3000/api/v1/users')
-      .then(res => {
-        console.log({ res })
-        this.users = res.data}
-      )
-      .catch (error => console.log({ error })
-      )
+      .then(res => this.users = res.data)
+      .catch(error => console.log({ error }))
     },
     addUsers() {
+      if(!this.content1) return alert('文字を入力してください')
       axios.post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       })
-      .then (() => {
-        this.getUsers()
-      })
-      .catch (error => console.log({ error })
-      )
-      this.alert()
-    },
-    alert() {
-      if(!this.content1) return alert('文字を入力してください')
-      this.users.push({
-        isDone: false,
-        text: this.content1,
-      })
+      .then(() => this.getUsers())
+      .catch(error => console.log({ error }))
       this.content1 = ''
     },
     clearDoneUsers() {
-      if (this.content1.length !== 0) return
-      this.done_filter()
-    },
-    done_filter() {
-      const user = this.users.filter((user) => user.isDone)
-      this.is_done(user)
-    },
-    is_done(user) {
-      for(let i = 0; i < user.length; i++) {
-        const userIsDone = user[i]
-        if(user.id === this.users.id) {
-          this.deleteUsers(userIsDone.id)
-        }
+      const isDone_users = this.users_filter()
+      for(let i = 0; i < isDone_users.length; i++) {
+        const userIsDone = isDone_users[i]
+        this.deleteUsers(userIsDone.id)
       }
+    },
+    users_filter() {
+      if(!this.content1 === '') return
+      return this.users.filter(users => users.isDone)
     },
     deleteUsers(userIsDoneId) {
       axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId)
-      .then (() => {
-        this.getUsers()
-      })
-      .catch (error => console.log({ error })
-      )
+      .then(() => this.getUsers())
+      .catch(error => console.log({ error }))
     }
   },
   mounted() {
