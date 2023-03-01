@@ -42,6 +42,7 @@ export default{
     },
     addUsers() {
       if(!this.content1) return alert('文字を入力してください')
+      
       axios.post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       }).then(() => this.getUsers())
