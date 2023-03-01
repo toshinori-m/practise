@@ -54,7 +54,8 @@ export default{
     },
     clearDoneUsers() {
       const isDone_users = this.users_filter()
-      if(!isDone_users.length) {return this.error = 'idを選択して下さい'} 
+      if(!isDone_users.length) return this.error = 'idを選択して下さい'
+      
       for(let i = 0; i < isDone_users.length; i++) {
         const userIsDone = isDone_users[i]
         this.deleteUsers(userIsDone.id)
