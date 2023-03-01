@@ -6,6 +6,7 @@
     <button @click = "clearDoneUsers">完了済みを削除する</button>
     <TextPage />
     <EmitPage />
+    <div class="error">{{ error }}</div>
     <p v-if = "users.length === 0">userがまだありません</p>
     <ul v-else>
       <li v-for = "user in users" :key = "user">
@@ -21,6 +22,7 @@
     </ul>
   </div>
 </template>
+
 <script>
 import axios from 'axios'
 import TextPage from '../components/TextPage.vue'
@@ -31,7 +33,8 @@ export default{
   data() {
     return {
       users: [],
-      content1: ''
+      content1: '',
+      error: ''
     }
   },
   methods:{
@@ -42,7 +45,7 @@ export default{
     },
     addUsers() {
       if(!this.content1) return alert('文字を入力してください')
-      
+
       axios.post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       }).then(() => this.getUsers())
@@ -51,6 +54,7 @@ export default{
     },
     clearDoneUsers() {
       const isDone_users = this.users_filter()
+      if(!isDone_users.length) {return this.error = 'idを選択して下さい'} 
       for(let i = 0; i < isDone_users.length; i++) {
         const userIsDone = isDone_users[i]
         this.deleteUsers(userIsDone.id)
@@ -70,6 +74,7 @@ export default{
   }
 }
 </script>
+
 <style>
 body {
   background-color: #eee;
@@ -77,5 +82,9 @@ body {
 
 .user-done {
   text-decoration: line-through;
+}
+
+.error {
+  color: red;
 }
 </style>
