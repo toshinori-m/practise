@@ -36,17 +36,18 @@ export default{
   },
   methods:{
     getUsers() {
-      axios.get('http://localhost:3000/api/v1/users')
-      .then(res => this.users = res.data)
-      .catch(error => console.log({ error }))
+      axios .get('http://localhost:3000/api/v1/users')
+            .then(res => this.users = res.data)
+            .catch(error => console.log({ error }))
     },
     addUsers() {
-      if(!this.content1) return alert('文字を入力してください')
-      axios.post('http://localhost:3000/api/v1/users', {
+      if(!this.content1)
+      return alert('文字を入力してください')
+      axios .post('http://localhost:3000/api/v1/users', {
         content1: this.content1
       })
-      .then(() => this.getUsers())
-      .catch(error => console.log({ error }))
+            .then(() => this.getUsers())
+            .catch(error => console.log({ error }))
       this.content1 = ''
     },
     clearDoneUsers() {
@@ -57,13 +58,12 @@ export default{
       }
     },
     users_filter() {
-      if(!this.content1 === '') return
       return this.users.filter(users => users.isDone)
     },
     deleteUsers(userIsDoneId) {
-      axios.delete('http://localhost:3000/api/v1/users/' + userIsDoneId)
-      .then(() => this.getUsers())
-      .catch(error => console.log({ error }))
+      axios .delete('http://localhost:3000/api/v1/users/' + userIsDoneId)
+            .then(() => this.getUsers())
+            .catch(error => console.log({ error }))
     }
   },
   mounted() {
