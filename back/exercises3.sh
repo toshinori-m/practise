@@ -9,17 +9,22 @@ if [ $answer = "y" ] ; then  # 答えがyes
     read function
     if [ $function = "sum" ] ; then  # 答えがsum
       awk '{sum+=$1}END{print sum}' $file_name
+      exit 0
     elif [ $function = "avg" ] ; then  # 答えがavg
-      awk '{x++;sum+=$1}END {print sum/x}' $file_name
+      awk '{sum+=$1}END {print sum/NR}' $file_name
+      exit 0
     elif [ $function = "min" ] ; then  # 答えがmin
-      awk 'BEGIN{min=1000000} {if($1 !="" && min>$1) min=$1}END {print min}' $file_name
+      awk '{if(min>$1 || NR == 1) min=$1} END {print min}' $file_name
+      exit 0
     elif [ $function = "max" ] ; then  # 答えがmax
-      awk 'NR==1 {max=$1} {if($1>max) max=$1} END{print max}' $file_name
+      awk '{if($1>max || NR == 1) max=$1} END {print max}' $file_name
+      exit 0
     else
       exit 1 # sum, avg, min, maxでない
     fi
   elif [ ! -e $file_name ]; then
     echo "ファイルが存在しません。"
+    exit 1 
   else
     exit 1 
   fi
