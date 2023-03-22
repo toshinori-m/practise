@@ -12,7 +12,7 @@ calcurate_max(){
   awk '{if($1>max || NR == 1) max=$1} END {print max}' $file_name
 }
 
-func(){
+cmd_selection(){
   if [ $command = "sum" ] ; then  # 答えがsum
     calcurate_sum
   elif [ $command = "avg" ] ; then  # 答えがavg
@@ -30,7 +30,7 @@ read -p $file_name"で良いですか？良ければy、ダメならn => " answe
 if [ $answer = "y" ] ; then  # 答えがyes
   if [ -e $file_name ]; then
     read -p "次の中から計算したい項目（sum, avg, min, max）を実行=> " command
-    func
+    cmd_selection
     exit 0
   elif [ ! -e $file_name ]; then
     echo "ファイルが存在しません。"
