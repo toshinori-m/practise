@@ -25,6 +25,7 @@ switch_execution_function_by_input(){
     exit 1 # sum, avg, min, maxでない
   fi
 }
+
 read -p "ファイル名を入力=> " file_name
 read -p $file_name"で良いですか？良ければy、ダメならn => " answer
 if [ $answer = "y" ] ; then  # 答えがyes
