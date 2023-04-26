@@ -27,7 +27,12 @@ if [ $control_command = "start" ]; then
   fi
 elif [ $control_command = "stop" ]; then
   if [ -e $file_name ]; then  # ジョブを終了
-    kill -15 `cat pids_file`
+    PID=1
+    while read p;
+    do
+      PID=$p
+    done < 'pids_file'
+    kill -15 $PID
     rm output_`cat pids_file`.txt
   elif [ ! -e $file_name ]; then  # 既にジョブが終了
     echo "Not running"
@@ -37,10 +42,20 @@ elif [ $control_command = "stop" ]; then
   fi
 elif [ $control_command = "status" ]; then  # 現在の状態を表示
   if [ -e $file_name ]; then  # 既にジョブが実行中
-    echo `cat pids_file`:"running"
+    PID=1
+    while read p;
+    do
+      PID=$p
+    done < 'pids_file'
+    echo Process is running pid=$PID
     exit 0
   elif [ ! -e $file_name ]; then  # 既にジョブが終了
-    echo `cat pids_file`:"Not running"
+    PID=1
+    while read p;
+    do
+      PID=$p
+    done < 'pids_file'
+    echo Process is not running pid=$PID
     exit 0
   else
     exit 1 
