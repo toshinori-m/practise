@@ -6,20 +6,21 @@ then
   exit 1
 fi
 
+function stop_job_running(){
+  rm output_`cat pids_file`.txt
+  exit 0
+}
+
 job_running(){
   i=0
   while [ $i -lt 20 ]; do
+    trap "stop_job_running" 2 15 #正常系の処理
     true; 
     i=`expr $i + 1`
     echo $i >> $pids_txt
     sleep 1;
   done
   rm output_`cat pids_file`.txt
-}
-
-function stop_exam7(){
-  rm output_`cat pids_file`.txt
-  exit 0
 }
 
 if [ $1 = 'start' ];
@@ -32,9 +33,6 @@ then
     touch output_"$pid".txt
     pids_txt=output_"$pid".txt
     job_running
-    trap "stop_exam7" 2 15
-    #正常系の処理
-    rm output_`cat pids_file`.txt
     exit 0
   elif [ -e $file_name ];
   then  # 既にジョブが実行中
