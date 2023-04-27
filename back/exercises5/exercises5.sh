@@ -16,7 +16,7 @@ function stop_exam7(){
   exit 0
 }
 
-job_running(){
+function job_running(){
   i=0
   while [ $i -lt 20 ]; do
     trap "stop_exam7" 2 15
