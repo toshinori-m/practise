@@ -18,7 +18,7 @@ function stop_exam7(){
 
 function job_running(){
   i=0
-  while [ $i -lt 20 ]; do
+  while [ $i -lt 1000 ]; do
     trap "stop_exam7" 2 15
     true; 
     i=`expr $i + 1`
