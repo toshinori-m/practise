@@ -36,6 +36,7 @@ then
   else
     echo $$ > exam7.lock
     job_running
+    rm exam7.lock
     exit 0
   fi
 elif [ $1 = 'stop' ];
