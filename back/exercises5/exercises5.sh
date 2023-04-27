@@ -20,7 +20,6 @@ function job_running(){
   i=0
   while [ $i -lt 1000 ]; do
     trap "stop_exam7" 2 15
-    true; 
     i=`expr $i + 1`
     echo $i >> output_$$.txt
     sleep 1;
