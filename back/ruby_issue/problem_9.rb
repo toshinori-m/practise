@@ -1,6 +1,9 @@
 class String
   def to_slug
+    strip!
     downcase!
+    gsub!(/[']+/, '')
+    gsub!(/\W+/, ' ')
     gsub!(' ', '-')
   end
 end
