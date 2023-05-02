@@ -1,10 +1,7 @@
 class String
   def to_slug
-    strip!
     downcase!
-    gsub!(/[']+/, '')
-    gsub!(/\W+/, ' ')
-    gsub!(' ', '-')
+    gsub(/\s/, '-').gsub(/[^0-9a-z-]/, '')
   end
 end
 puts "Hello World".to_slug 
